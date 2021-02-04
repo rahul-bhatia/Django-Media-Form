@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>File Management App</title>
+	<style type="text/css">
+		*{
+			font-family: courier;
+			font-size: 30px;
+		}
+	</style>
+</head>
+<body>
+	<CENTER>
+		<h1>File Management System</h1>
+		<a href="{% url 'create'%}">Submit Homework</a>
+		<FORM method="POST">
+			{% csrf_token%}
+
+			<table border="2">
+				<tr>
+					<th>Roll No.</th>
+					<th>Name</th>
+					<th>File Name</th>
+					<th>Link</th>
+					<th>Delete</th>
+				</tr>
+				{% for d in data %}
+					<tr>
+						<td>{{d.rno}}</td>
+						<td>{{d.name}}</td>
+						<td>{{d.file.name}}</td>
+						<td><a href="{{d.file.url}}">show</a></td>
+						<td><a href="{% url 'delete' id=d.rno %}" onclick="return confirm('Sure man?')">Delete</a></td>
+					</tr>
+				{% empty %}
+				<tr>
+					<td>No data Found</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</FORM>
+	</CENTER>
+
+</body>
+</html>

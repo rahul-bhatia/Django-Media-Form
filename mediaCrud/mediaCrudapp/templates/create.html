@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>File Management App</title>
+	<style type="text/css">
+		*{
+			font-family: courier;
+			font-size: 30px;
+		}
+	</style>
+</head>
+<body>
+	<CENTER>
+		<h1>File Management System</h1>
+		<a href="{% url 'home'%}">Home</a>
+		<FORM method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
+			{% csrf_token%}
+
+			<table border="2">
+				{{fm.as_table}}
+			</table>
+			<input type="submit">
+		</FORM>
+		{{msg}}
+	</CENTER>
+
+</body>
+</html>
